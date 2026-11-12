@@ -14,7 +14,7 @@ vi.mock("./session", () => ({
   getTenantSession: () => getTenantSession(),
 }));
 
-const { ApiError, centralApi, tenantApi } = await import("./laravel");
+const { ApiError, centralApi, tenantApi } = await import("./api");
 
 const fetchMock = vi.fn();
 const json = (status: number, body: unknown) =>

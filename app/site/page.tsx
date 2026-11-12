@@ -34,15 +34,6 @@ export default function LandingPage() {
           Create your workspace
         </Link>
       </section>
-      <ul className="grid gap-8 sm:grid-cols-3">
-        {FEATURES.map(({ icon: Icon, title, body }) => (
-          <li key={title} className="flex flex-col gap-2">
-            <Icon className="size-5" aria-hidden />
-            <h2 className="font-medium">{title}</h2>
-            <p className="text-sm text-muted-foreground">{body}</p>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

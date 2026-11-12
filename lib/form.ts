@@ -1,4 +1,4 @@
-import { ApiError } from "./laravel";
+import { ApiError } from "./api";
 
 export type FormState = {
   ok?: boolean;

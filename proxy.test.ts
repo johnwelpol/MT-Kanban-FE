@@ -82,6 +82,16 @@ describe("proxy on a tenant host", () => {
     expect(res.headers.get("x-middleware-next")).toBe("1");
   });
 
+  it("resolves the tenant from x-forwarded-host (server action redirects re-enter via localhost)", async () => {
+    const res = await proxy(
+      req("http://localhost:3000/login?reset=1", {
+        headers: { "x-forwarded-host": "acme.localhost:3000, proxy.internal" },
+      }),
+    );
+    expect(res.headers.get("x-middleware-rewrite")).toBeNull();
+    expect(forwarded(res, "x-tenant-slug")).toBe("acme");
+  });
+
   it("redirects /login to /boards when a session cookie exists", async () => {
     const res = await proxy(req("http://acme.localhost:3000/login", { cookie: "session=sealed" }));
     expect(res.headers.get("location")).toBe("http://acme.localhost:3000/boards");

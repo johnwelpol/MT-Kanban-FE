@@ -2,12 +2,12 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const { centralApi } = vi.hoisted(() => ({ centralApi: vi.fn() }));
 vi.mock("next/headers", () => ({ headers: async () => new Headers() }));
-vi.mock("@/lib/laravel", async (orig) => ({
-  ...(await orig<typeof import("@/lib/laravel")>()),
+vi.mock("@/lib/api", async (orig) => ({
+  ...(await orig<typeof import("@/lib/api")>()),
   centralApi,
 }));
 
-const { ApiError } = await import("@/lib/laravel");
+const { ApiError } = await import("@/lib/api");
 const { findWorkspaces } = await import("./actions");
 
 const form = (email: string) => {

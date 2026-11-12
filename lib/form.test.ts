@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 
 vi.mock("next/headers", () => ({ headers: async () => new Headers() }));
 
-const { ApiError } = await import("./laravel");
+const { ApiError } = await import("./api");
 const { toFormState } = await import("./form");
 
 describe("toFormState", () => {

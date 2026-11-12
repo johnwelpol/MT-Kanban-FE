@@ -3,6 +3,7 @@ import { getIronSession, type SessionOptions } from "iron-session";
 import { cookies, headers } from "next/headers";
 import { SESSION_COOKIE, TENANT_ID_HEADER, TENANT_SLUG_HEADER } from "./constants";
 import { env } from "./env";
+import type { AuthResult } from "./types";
 
 export type SessionData = { token?: string; tenantId?: string; userId?: number };
 
@@ -28,6 +29,14 @@ export async function currentTenant(): Promise<{ id: string; slug: string }> {
   const slug = h.get(TENANT_SLUG_HEADER);
   if (!id || !slug) throw new Error("No tenant resolved for this request");
   return { id, slug };
+}
+
+export async function startSession({ token, user }: AuthResult) {
+  const [session, tenant] = await Promise.all([getSession(), currentTenant()]);
+  session.token = token;
+  session.tenantId = tenant.id;
+  session.userId = user.id;
+  await session.save();
 }
 
 export async function getTenantSession() {

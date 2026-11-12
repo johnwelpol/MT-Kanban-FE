@@ -1,7 +1,7 @@
 "use server";
 
 import { toFormState, type FormState } from "@/lib/form";
-import { centralApi } from "@/lib/laravel";
+import { centralApi } from "@/lib/api";
 
 export async function findWorkspaces(_prev: FormState, formData: FormData): Promise<FormState> {
   try {

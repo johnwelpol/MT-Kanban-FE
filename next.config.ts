@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const noReferrer = [{ key: "Referrer-Policy", value: "no-referrer" }];
+// no-referrer makes browsers send `Origin: null` on form posts, which Next rejects for server actions.
+const sameOriginReferrer = [{ key: "Referrer-Policy", value: "same-origin" }];
 
 const nextConfig: NextConfig = {
   turbopack: {
@@ -22,8 +24,8 @@ const nextConfig: NextConfig = {
         ],
       },
       { source: "/auth/callback", headers: noReferrer },
-      { source: "/invite/:token", headers: noReferrer },
-      { source: "/reset-password", headers: noReferrer },
+      { source: "/invite/:token", headers: sameOriginReferrer },
+      { source: "/reset-password", headers: sameOriginReferrer },
     ];
   },
 };
