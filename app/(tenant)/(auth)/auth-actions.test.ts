@@ -7,10 +7,10 @@ vi.mock("next/navigation", () => ({
     throw new Error(`REDIRECT:${url}`);
   },
 }));
-vi.mock("@/lib/laravel", async (orig) => ({ ...(await orig<typeof import("@/lib/laravel")>()), tenantApi }));
+vi.mock("@/lib/api", async (orig) => ({ ...(await orig<typeof import("@/lib/api")>()), tenantApi }));
 vi.mock("@/lib/session", () => ({ startSession }));
 
-const { ApiError } = await import("@/lib/laravel");
+const { ApiError } = await import("@/lib/api");
 const { login } = await import("./login/actions");
 const { forgotPassword } = await import("./forgot-password/actions");
 const { resetPassword } = await import("./reset-password/actions");

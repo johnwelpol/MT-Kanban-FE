@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { env } from "@/lib/env";
-import { getPublicWorkspace } from "@/lib/laravel";
+import { getPublicWorkspace } from "@/lib/api";
 
 export default async function AuthLayout({ children }: { children: React.ReactNode }) {
   const workspace = await getPublicWorkspace();

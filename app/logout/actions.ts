@@ -1,7 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { tenantApi } from "@/lib/laravel";
+import { tenantApi } from "@/lib/api";
 import { getSession } from "@/lib/session";
 
 export async function logout() {

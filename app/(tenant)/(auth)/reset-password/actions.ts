@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { toFormState, type FormState } from "@/lib/form";
-import { tenantApi } from "@/lib/laravel";
+import { tenantApi } from "@/lib/api";
 
 const FIELDS = ["token", "email", "password", "password_confirmation"];
 

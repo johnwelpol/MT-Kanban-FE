@@ -1,7 +1,7 @@
 "use server";
 
 import { toFormState, type FormState } from "@/lib/form";
-import { tenantApi } from "@/lib/laravel";
+import { tenantApi } from "@/lib/api";
 
 export async function forgotPassword(_prev: FormState, formData: FormData): Promise<FormState> {
   try {

@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { toFormState, type FormState } from "@/lib/form";
-import { ApiError, tenantApi } from "@/lib/laravel";
+import { ApiError, tenantApi } from "@/lib/api";
 import { startSession } from "@/lib/session";
 import type { AuthResult } from "@/lib/types";
 

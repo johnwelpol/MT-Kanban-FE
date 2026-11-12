@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import type { NextRequest } from "next/server";
-import { ApiError, tenantApi } from "@/lib/laravel";
+import { ApiError, tenantApi } from "@/lib/api";
 import { startSession } from "@/lib/session";
 import type { AuthResult } from "@/lib/types";
 

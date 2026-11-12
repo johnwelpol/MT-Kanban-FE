@@ -6,7 +6,7 @@ vi.mock("next/navigation", () => ({
     throw new Error(`REDIRECT:${url}`);
   },
 }));
-vi.mock("@/lib/laravel", () => ({ tenantApi }));
+vi.mock("@/lib/api", () => ({ tenantApi }));
 vi.mock("@/lib/session", () => ({ getSession: async () => ({ destroy }) }));
 
 const { logout } = await import("./actions");

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ApiError, tenantApi } from "@/lib/laravel";
+import { ApiError, tenantApi } from "@/lib/api";
 import type { InvitePreview } from "@/lib/types";
 import { AcceptForm } from "./accept-form";
 

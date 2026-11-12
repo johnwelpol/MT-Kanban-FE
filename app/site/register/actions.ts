@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { toFormState, type FormState } from "@/lib/form";
-import { centralApi } from "@/lib/laravel";
+import { centralApi } from "@/lib/api";
 import { validateSlug } from "@/lib/slug";
 import type { Workspace } from "@/lib/types";
 import { tenantUrl } from "@/lib/urls";
