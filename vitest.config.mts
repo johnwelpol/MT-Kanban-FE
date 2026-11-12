@@ -16,7 +16,7 @@ export default defineConfig({
       ROOT_DOMAIN: "localhost",
       APP_PROTOCOL: "http",
       APP_PORT: "3000",
-      LARAVEL_INTERNAL_URL: "http://127.0.0.1:8000",
+      INTERNAL_API_URL: "http://127.0.0.1:8000",
       INTERNAL_API_KEY: "test-internal-key",
       SESSION_SECRET: "test-session-secret-at-least-32-chars",
     },

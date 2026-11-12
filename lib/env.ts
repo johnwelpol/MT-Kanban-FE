@@ -9,7 +9,7 @@ const schema = z.object({
     .regex(/^\d*$/)
     .optional()
     .transform((v) => v || undefined),
-  LARAVEL_INTERNAL_URL: z.url(),
+  INTERNAL_API_URL: z.url(),
   INTERNAL_API_KEY: z.string().min(1),
   SESSION_SECRET: z.string().min(32),
 });

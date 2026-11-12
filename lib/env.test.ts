@@ -5,7 +5,7 @@ const valid = {
   ROOT_DOMAIN: "localhost",
   APP_PROTOCOL: "http",
   APP_PORT: "3000",
-  LARAVEL_INTERNAL_URL: "http://127.0.0.1:8000",
+  INTERNAL_API_URL: "http://127.0.0.1:8000",
   INTERNAL_API_KEY: "k".repeat(64),
   SESSION_SECRET: "s".repeat(32),
 };
@@ -31,9 +31,9 @@ describe("parseEnv", () => {
     );
   });
 
-  it("rejects an invalid LARAVEL_INTERNAL_URL", () => {
+  it("rejects an invalid INTERNAL_API_URL", () => {
     expect(() =>
-      parseEnv({ ...valid, LARAVEL_INTERNAL_URL: "not a url" }),
-    ).toThrow(/LARAVEL_INTERNAL_URL/);
+      parseEnv({ ...valid, INTERNAL_API_URL: "not a url" }),
+    ).toThrow(/INTERNAL_API_URL/);
   });
 });
