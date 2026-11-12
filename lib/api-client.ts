@@ -24,6 +24,7 @@ export async function apiFetch<T>(path: string, { json, headers, ...init }: ApiF
   });
 
   if (res.status === 401) {
+    // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- /logout is a route handler that clears the cookie; it needs a full navigation.
     window.location.assign("/logout?expired=1");
     throw new ApiClientError(401, null);
   }
