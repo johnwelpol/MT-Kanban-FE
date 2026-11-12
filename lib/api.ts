@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { cache } from "react";
 import { env } from "./env";
 import { currentTenant, getTenantSession } from "./session";
-import type { Me, Workspace } from "./types";
+import type { BoardSummary, Me, Workspace } from "./types";
 
 export type ApiErrorBody = { message?: string; errors?: Record<string, string[]> } | null;
 
@@ -63,6 +63,8 @@ export function tenantApi<T>(path: string, opts: Omit<RequestOptions, "tenant"> 
 }
 
 export const getMe = cache(() => tenantApi<Me>("/me"));
+
+export const getBoards = cache(() => tenantApi<BoardSummary[]>("/boards"));
 
 export const getPublicWorkspace = cache(() =>
   tenantApi<Workspace>("/workspace/public", { auth: false }),
