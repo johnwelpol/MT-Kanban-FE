@@ -39,7 +39,7 @@ async function request<T>(
   }
   if (body !== undefined) h["Content-Type"] = "application/json";
 
-  const res = await fetch(`${env.LARAVEL_INTERNAL_URL}/api${path}`, {
+  const res = await fetch(`${env.INTERNAL_API_URL}/api${path}`, {
     method,
     headers: h,
     body: body === undefined ? undefined : JSON.stringify(body),
