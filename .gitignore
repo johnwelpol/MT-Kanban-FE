@@ -41,8 +41,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# playwright
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+# cypress
+/cypress/screenshots/
+/cypress/videos/
+/cypress/downloads/

@@ -14,3 +14,4 @@ Deviations from `00-overview.md` / `02-frontend-nextjs.md`.
 | 2026-11-12 | `iron-session` v9 (the plan says v8) and `zod` v4. | These are the current majors at install time. The API is checked in F1. |
 | 2026-11-12 | `typecheck` runs `next typegen` before `tsc`. | Global route types (`LayoutProps`, ...) only exist after generation, so a clean checkout would fail without it. |
 | 2026-11-12 | Vitest sets dummy server env vars in `vitest.config.mts`. | `lib/env.ts` validates at import, so any tested module that imports it would otherwise throw. |
+| 2026-11-12 | E2E uses Cypress instead of Playwright. | Requested by the project owner. Workspace subdomains need `cy.origin()` (Cypress `injectDocumentDomain` is off by default), and the second user in multi-user specs is driven from a `cy.task`, because Cypress has a single browser context. |
