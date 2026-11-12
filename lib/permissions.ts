@@ -16,6 +16,8 @@ export const ROLE_PERMISSIONS: Record<Role, readonly Permission[]> = {
   viewer: ["members.view", "board.view"],
 };
 
+export const ROLE_LABELS: Record<Role, string> = { owner: "Owner", admin: "Admin", member: "Member", viewer: "Viewer" };
+
 const RANKS: Record<Role, number> = { owner: 4, admin: 3, member: 2, viewer: 1 };
 
 export function rank(role: Role): number {
