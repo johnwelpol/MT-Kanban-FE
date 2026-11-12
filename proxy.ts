@@ -12,7 +12,9 @@ export async function proxy(req: NextRequest) {
   headers.delete(TENANT_ID_HEADER);
   headers.delete(TENANT_SLUG_HEADER);
   const { pathname } = req.nextUrl;
-  const host = parseHost(req.headers.get("host"));
+  // Server action redirects are re-fetched internally via localhost; the original host survives in x-forwarded-host.
+  const forwardedHost = req.headers.get("x-forwarded-host")?.split(",")[0].trim();
+  const host = parseHost(forwardedHost || req.headers.get("host"));
 
   if (host.kind === "root") {
     const url = req.nextUrl.clone();
