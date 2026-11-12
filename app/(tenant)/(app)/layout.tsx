@@ -4,14 +4,14 @@ import { Providers } from "@/components/providers";
 import { MobileNav } from "@/components/shell/mobile-nav";
 import { Sidebar } from "@/components/shell/sidebar";
 import { UserMenu } from "@/components/shell/user-menu";
-import { ApiError, getMe, tenantApi } from "@/lib/api";
+import { ApiError, getBoards, getMe } from "@/lib/api";
 import type { BoardSummary, Me } from "@/lib/types";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   let me: Me;
   let boards: BoardSummary[];
   try {
-    [me, boards] = await Promise.all([getMe(), tenantApi<BoardSummary[]>("/boards")]);
+    [me, boards] = await Promise.all([getMe(), getBoards()]);
   } catch (e) {
     if (e instanceof ApiError && e.status === 403) redirect("/logout");
     throw e;
