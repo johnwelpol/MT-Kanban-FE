@@ -12,7 +12,7 @@ export function CardItem({ card, overlay }: { card: CardSummary; overlay?: boole
     <div
       className={cn(
         "grid gap-2 rounded-lg border bg-card p-2.5 text-sm shadow-xs",
-        overlay && "rotate-2 shadow-lg ring-2 ring-ring/40",
+        overlay && "shadow-lg ring-2 ring-ring/40",
       )}
     >
       <p className="break-words whitespace-pre-wrap">{card.title}</p>
