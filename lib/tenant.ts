@@ -23,7 +23,7 @@ export async function resolveTenant(slug: string): Promise<Workspace | null> {
   const hit = cache.get(slug);
   if (hit && hit.expiresAt > Date.now()) return hit.value;
 
-  const url = `${process.env.LARAVEL_INTERNAL_URL}/api/internal/tenants/resolve?slug=${encodeURIComponent(slug)}`;
+  const url = `${process.env.INTERNAL_API_URL}/api/internal/tenants/resolve?slug=${encodeURIComponent(slug)}`;
   const res = await fetch(url, {
     headers: { Accept: "application/json", "X-Internal-Key": process.env.INTERNAL_API_KEY ?? "" },
     cache: "no-store",

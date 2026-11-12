@@ -42,7 +42,7 @@ async function handle(req: NextRequest, ctx: RouteContext<"/api/[...path]">) {
   }
 
   const upstream = await fetch(
-    `${env.LARAVEL_INTERNAL_URL}/api/${path.map(encodeURIComponent).join("/")}${req.nextUrl.search}`,
+    `${env.INTERNAL_API_URL}/api/${path.map(encodeURIComponent).join("/")}${req.nextUrl.search}`,
     {
       method: req.method,
       headers,
