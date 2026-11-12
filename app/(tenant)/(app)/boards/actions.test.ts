@@ -11,7 +11,7 @@ vi.mock("next/navigation", () => ({
 vi.mock("@/lib/api", async (orig) => ({ ...(await orig<typeof import("@/lib/api")>()), tenantApi }));
 
 const { ApiError } = await import("@/lib/api");
-const { createBoard } = await import("./actions");
+const { createBoard, deleteBoard, renameBoard } = await import("./actions");
 
 const form = (fields: Record<string, string>) => {
   const fd = new FormData();
@@ -45,5 +45,34 @@ describe("createBoard", () => {
     tenantApi.mockRejectedValueOnce(new ApiError(422, { message: "Bad.", errors: { name: ["Required."] } }));
     expect(await createBoard({}, form({ name: "" }))).toMatchObject({ fieldErrors: { name: ["Required."] } });
     expect(revalidatePath).not.toHaveBeenCalled();
+  });
+});
+
+describe("renameBoard", () => {
+  it("patches the name and revalidates the layout", async () => {
+    tenantApi.mockResolvedValueOnce({ id: "b-1", name: "New" });
+    expect(await renameBoard("b-1", {}, form({ name: "New" }))).toEqual({ ok: true });
+    expect(tenantApi).toHaveBeenCalledWith("/boards/b-1", { method: "PATCH", body: { name: "New" } });
+    expect(revalidatePath).toHaveBeenCalledWith("/boards", "layout");
+  });
+
+  it("returns field errors on 422", async () => {
+    tenantApi.mockRejectedValueOnce(new ApiError(422, { message: "Bad.", errors: { name: ["Too long."] } }));
+    expect(await renameBoard("b-1", {}, form({ name: "x" }))).toMatchObject({ fieldErrors: { name: ["Too long."] } });
+    expect(revalidatePath).not.toHaveBeenCalled();
+  });
+});
+
+describe("deleteBoard", () => {
+  it("deletes, revalidates and goes back to /boards", async () => {
+    tenantApi.mockResolvedValueOnce(undefined);
+    await expect(deleteBoard("b/1")).rejects.toThrow("REDIRECT:/boards");
+    expect(tenantApi).toHaveBeenCalledWith("/boards/b%2F1", { method: "DELETE" });
+    expect(revalidatePath).toHaveBeenCalledWith("/boards", "layout");
+  });
+
+  it("returns a message when Laravel refuses", async () => {
+    tenantApi.mockRejectedValueOnce(new ApiError(403, { message: "This action is unauthorized." }));
+    expect(await deleteBoard("b-1")).toEqual({ ok: false, message: "This action is unauthorized." });
   });
 });
