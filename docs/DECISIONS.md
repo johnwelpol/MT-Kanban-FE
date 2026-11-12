@@ -13,4 +13,4 @@ Deviations from `00-overview.md` / `02-frontend-nextjs.md`.
 | 2026-11-12 | `@types/node` was bumped from ^20 to ^22. | Vitest 5 requires it, and it matches the Node 22 runtime. |
 | 2026-11-12 | `iron-session` v9 (the plan says v8) and `zod` v4. | These are the current majors at install time. The API is checked in F1. |
 | 2026-11-12 | `typecheck` runs `next typegen` before `tsc`. | Global route types (`LayoutProps`, ...) only exist after generation, so a clean checkout would fail without it. |
-| 2026-11-12 | Vitest sets dummy server env vars in `vitest.config.ts`. | `lib/env.ts` validates at import, so any tested module that imports it would otherwise throw. |
+| 2026-11-12 | Vitest sets dummy server env vars in `vitest.config.mts`. | `lib/env.ts` validates at import, so any tested module that imports it would otherwise throw. |
