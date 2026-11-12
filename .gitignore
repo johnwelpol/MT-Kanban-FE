@@ -45,3 +45,6 @@ next-env.d.ts
 /cypress/screenshots/
 /cypress/videos/
 /cypress/downloads/
+
+# local notes
+/docs/DECISIONS.md
